@@ -1,26 +1,11 @@
-# src/pipeline/preprocess.py
 import pandas as pd
-import os
+from config.settings import RAW_DATA_PATH, PROCESSED_DATA_PATH
 
-RAW_PATH = "data/raw/sales_data.csv"
-PROCESSED_PATH = "data/processed/sales_cleaned.csv"
+def preprocess_data():
+    df = pd.read_csv(RAW_DATA_PATH)
 
-def preprocess():
-    # ✅ Read raw data (DO NOT MODIFY FILE)
-    df = pd.read_csv(RAW_PATH)
+    # Simple preprocessing
+    df["sales_per_customer"] = df["sales"] / df["customers"]
 
-    # ✅ Clean data
-    df.drop_duplicates(inplace=True)
-    df.dropna(inplace=True)
-
-    # Example transformation
-    df["sales"] = df["sales"].astype(int)
-
-    # ✅ Save to processed folder
-    os.makedirs("data/processed", exist_ok=True)
-    df.to_csv(PROCESSED_PATH, index=False)
-
-    print("Processed data saved!")
-
-if __name__ == "__main__":
-    preprocess()
+    df.to_csv(PROCESSED_DATA_PATH, index=False)
+    print("✅ Data preprocessing complete!")
