@@ -1,3 +1,5 @@
+# Run the Python script to generate raw data
+
 import pandas as pd
 import numpy as np
 import os
@@ -14,3 +16,4 @@ data = pd.DataFrame({
 data.to_csv("data/raw/data.csv", index=False)
 
 print("✅ Raw data generated!")
+
