@@ -254,6 +254,10 @@ ingest_data → preprocess_data → engineer_features → train_model
 
 Python 3.11.9
 
+## Verification Commands
+
+python --version
+
 ## 📜 License
 
 This project is for learning and portfolio purposes.
