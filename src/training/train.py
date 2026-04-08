@@ -1,12 +1,20 @@
-def train_model(training_data):
-    """
-    Train a simple model by calculating average sales.
-    """
-    total_sales = sum(training_data)
-    number_of_days = len(training_data)
+# src/training/train.py
 
-    average_sales = total_sales / number_of_days
 
+def calculate_average_sales(sales_data):
+    """
+    Calculate average sales from the dataset.
+    """
+    total_sales = sum(sales_data)
+    number_of_days = len(sales_data)
+
+    return total_sales / number_of_days
+
+
+def build_model(average_sales):
+    """
+    Create a simple model representation.
+    """
     model = {
         "average_sales": average_sales,
         "status": "trained"
@@ -15,8 +23,22 @@ def train_model(training_data):
     return model
 
 
+def train_model(sales_data):
+    """
+    Main function to train model.
+    Combines smaller reusable functions.
+    """
+    average_sales = calculate_average_sales(sales_data)
+    model = build_model(average_sales)
+
+    return model
+
+
 if __name__ == "__main__":
-    sample_data = [10, 20, 30, 40, 50]
+    # Clean execution section
+    sample_data = [100, 120, 130, 90, 150]
+
     trained_model = train_model(sample_data)
 
+    print("Model trained successfully")
     print(trained_model)
