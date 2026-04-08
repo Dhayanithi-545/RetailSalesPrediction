@@ -1,22 +1,22 @@
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-import joblib
+def train_model(training_data):
+    """
+    Train a simple model by calculating average sales.
+    """
+    total_sales = sum(training_data)
+    number_of_days = len(training_data)
 
-from config.settings import PROCESSED_DATA_PATH, MODEL_PATH, TEST_SIZE, RANDOM_STATE
+    average_sales = total_sales / number_of_days
 
-def train_model():
-    df = pd.read_csv(PROCESSED_DATA_PATH)
+    model = {
+        "average_sales": average_sales,
+        "status": "trained"
+    }
 
-    X = df[["customers", "promo"]]
-    y = df["sales"]
+    return model
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE
-    )
 
-    model = LinearRegression()
-    model.fit(X_train, y_train)
+if __name__ == "__main__":
+    sample_data = [10, 20, 30, 40, 50]
+    trained_model = train_model(sample_data)
 
-    joblib.dump(model, MODEL_PATH)
-    print("✅ Model trained and saved!")
+    print(trained_model)
