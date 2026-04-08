@@ -77,3 +77,5 @@ if __name__ == "__main__":
     print(df.dtypes)
     print("\nMissing values:")
     print(df.isnull().sum())
+
+
