@@ -1,16 +1,19 @@
-import pandas as pd
-import numpy as np
-import os
+import random
 
-os.makedirs("data/raw", exist_ok=True)
 
-data = pd.DataFrame({
-    "store_id": np.arange(1, 101),
-    "sales": np.random.randint(100, 1000, 100),
-    "customers": np.random.randint(10, 100, 100),
-    "promo": np.random.randint(0, 2, 100)
-})
+def generate_sales_data(number_of_days):
+    """
+    Generate random sales data for a given number of days.
+    """
+    sales_data = []
 
-data.to_csv("data/raw/data.csv", index=False)
+    for _ in range(number_of_days):
+        daily_sale = random.randint(1, 100)
+        sales_data.append(daily_sale)
 
-print("✅ Raw data generated!")
+    return sales_data
+
+
+if __name__ == "__main__":
+    sample_data = generate_sales_data(7)
+    print(sample_data)
